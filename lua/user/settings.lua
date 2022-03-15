@@ -283,6 +283,7 @@ local config = {
   polish = function()
     local opts = { noremap = true, silent = true }
     local map = vim.api.nvim_set_keymap
+    local unmap = vim.api.nvim_del_keymap
 
     vim.opt.colorcolumn = "80,100,9999"
     vim.opt.scrolloff = 15
@@ -296,9 +297,9 @@ local config = {
     vim.opt.clipboard = "" -- the default is *SLOW* on my system
 
     -- Undo some AstroVim mappings:
-    map("n", "<C-w>", "<Nop>", opts)
-    map("n", "<C-q>", "<Nop>", opts)
-    map("n", "<leader>ss", "<Nop>", opts)
+    unmap("n", "<C-w>")
+    unmap("n", "<C-q>")
+    unmap("n", "<leader>gd")
 
     map("n", "fm", ":lua vim.lsp.buf.formatting()<cr>", opts)
     map("n", "<leader>D", ":Telescope lsp_type_definitions<cr>", opts)
