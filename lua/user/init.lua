@@ -258,12 +258,6 @@ local config = {
     end,
   },
 
-  -- Diagnostics option
-  diagnostics = {
-    enable = true,
-    text = "italic",
-  },
-
   -- Disable default plugins
   enabled = {
     bufferline = false,
