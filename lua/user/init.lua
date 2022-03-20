@@ -5,6 +5,19 @@ local config = {
   -- Set colorscheme
   colorscheme = "default_theme",
 
+  default_theme = {
+    diagnostics_style = "italic",
+    -- Modify the highlight groups
+    highlights = function(highlights)
+      -- Add InlayHints
+      local inlay_hint = highlights["Comment"]
+      inlay_hint["style"] = "italic"
+      highlights["InlayHints"] = inlay_hint
+
+      return highlights
+    end,
+  },
+
   -- Add plugins
   plugins = {
     -- Change Packer config itself:
