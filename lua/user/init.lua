@@ -219,7 +219,7 @@ local config = {
       },
     },
     luasnip = {
-      vscode_snippets_paths = { paths = "/home/extra/.config/nvim-data/snippets" },
+      vscode_snippet_paths = { paths = "/home/extra/.config/nvim-data/snippets" },
     },
     treesitter = {
       ensure_installed = {},
