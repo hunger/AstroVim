@@ -171,11 +171,11 @@ local config = {
       -- disable delayed loading of all default plugins:
       for _, plugin in pairs(plugins) do
         -- disable lazy loading
-        plugin["cmd"] = nil
-        plugin["event"] = nil
-        plugin["after"] = nil
+        -- plugin["cmd"] = nil
+        -- plugin["event"] = nil
+        -- plugin["after"] = nil
         -- disable special stuff done on startup (like build TS plugins!)
-        plugin["run"] = nil
+        -- plugin["run"] = nil
 
         table.insert(result, plugin)
       end
@@ -219,7 +219,7 @@ local config = {
       },
     },
     luasnip = {
-      vscode_snippets_paths = { "/home/extra/.config/nvim-data/snippets" },
+      vscode_snippets_paths = { paths = "/home/extra/.config/nvim-data/snippets" },
     },
     treesitter = {
       ensure_installed = {},
