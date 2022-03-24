@@ -242,8 +242,8 @@ local config = {
           tools = {
             inlay_hints = {
               highlight = "InlayHints",
-              parameter_hints_prefix = " ",
-              other_hints_prefix = " ",
+              parameter_hints_prefix = "  ",
+              other_hints_prefix = "  ",
             },
           },
         }
