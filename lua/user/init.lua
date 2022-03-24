@@ -10,8 +10,9 @@ local config = {
     -- Modify the highlight groups
     highlights = function(highlights)
       -- Add InlayHints
-      local inlay_hint = highlights["Comment"]
-      inlay_hint["style"] = "italic"
+      local inlayHints = highlights["Comment"]
+      highlights["Comment"]["style"] = nil
+      inlayHints["style"] = "italic"
       highlights["InlayHints"] = inlay_hint
 
       return highlights
