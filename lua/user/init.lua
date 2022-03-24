@@ -13,7 +13,7 @@ local config = {
       local inlayHints = highlights["Comment"]
       highlights["Comment"]["style"] = nil
       inlayHints["style"] = "italic"
-      highlights["InlayHints"] = inlay_hint
+      highlights["InlayHints"] = inlayHints
 
       return highlights
     end,
@@ -113,13 +113,6 @@ local config = {
             require("telescope").load_extension "file_browser"
           end,
         },
-        {
-          "nvim-telescope/telescope-ui-select.nvim",
-          after = "telescope.nvim",
-          config = function()
-            require("telescope").load_extension "ui-select"
-          end,
-        },
 
         -- Tools
         { "tpope/vim-repeat" },
@@ -180,6 +173,7 @@ local config = {
         -- disable lazy loading
         plugin["cmd"] = nil
         plugin["event"] = nil
+        plugin["after"] = nil
         -- disable special stuff done on startup (like build TS plugins!)
         plugin["run"] = nil
 
@@ -295,7 +289,6 @@ local config = {
     vim.opt.clipboard = "" -- the default is *SLOW* on my system
 
     -- Undo some AstroVim mappings:
-    unmap("n", "<C-w>")
     unmap("n", "<C-q>")
     unmap("n", "<leader>gd")
 
