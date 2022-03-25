@@ -7,16 +7,6 @@ local config = {
 
   default_theme = {
     diagnostics_style = "italic",
-    -- Modify the highlight groups
-    highlights = function(highlights)
-      -- Add InlayHints
-      local inlayHints = highlights["Comment"]
-      highlights["Comment"]["style"] = nil
-      inlayHints["style"] = "italic"
-      highlights["InlayHints"] = inlayHints
-
-      return highlights
-    end,
   },
 
   -- Add plugins
@@ -240,7 +230,6 @@ local config = {
           },
           tools = {
             inlay_hints = {
-              highlight = "InlayHints",
               parameter_hints_prefix = "  ",
               other_hints_prefix = "  ",
             },
