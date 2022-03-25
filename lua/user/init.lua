@@ -80,8 +80,7 @@ local config = {
 
         -- Rust support
         {
-          -- "simrat39/rust-tools.nvim",
-          "hunger/rust-tools.nvim", -- fix inlay hints
+          "simrat39/rust-tools.nvim",
           requires = { "nvim-lspconfig", "nvim-lsp-installer", "nvim-dap", "Comment.nvim" },
           -- Is configured via the server_registration_override installed below!
         },
