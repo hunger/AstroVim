@@ -58,7 +58,19 @@ local config = {
           "rcarriga/nvim-dap-ui",
           requires = { "nvim-dap", "rust-tools.nvim" },
           config = function()
-            require("dapui").setup {}
+            local dapui = require "dapui"
+            dapui.setup {}
+
+            local dap = require "dap"
+            dap.listeners.after.event_initialized["dapui_config"] = function()
+              dapui.open()
+            end
+            dap.listeners.before.event_terminated["dapui_config"] = function()
+              dapui.close()
+            end
+            dap.listeners.before.event_exited["dapui_config"] = function()
+              dapui.close()
+            end
           end,
         },
         {
@@ -67,11 +79,13 @@ local config = {
             require("dap-install").setup {}
           end,
         },
-
+        {
+          "mfussenegger/nvim-dap-python",
+        },
         -- Rust support
         {
           "simrat39/rust-tools.nvim",
-          requires = { "nvim-lspconfig", "nvim-lsp-installer", "nvim-dap", "Comment.nvim" },
+          requires = { "nvim-lspconfig", "nvim-lsp-installer", "nvim-dap", "Comment.nvim", "plenary.nvim" },
           -- Is configured via the server_registration_override installed below!
         },
         {
@@ -219,15 +233,15 @@ local config = {
     server_registration = function(server, server_opts)
       -- Special code for rust.tools.nvim!
       if server.name == "rust_analyzer" then
-        local extension_path = vim.fn.stdpath "data" .. "/dapinstall/codelldb/extension/"
-        local codelldb_path = extension_path .. "adapter/codelldb"
-        local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+        local extension_path = vim.fn.stdpath "data" .. "/dapinstall/codelldb/extension"
+        local codelldb_path = extension_path .. "/adapter/codelldb"
+        local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
 
         require("rust-tools").setup {
           server = server_opts,
-          dap = {
-            adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-          },
+          -- dap = {
+          --   adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+          -- },
           tools = {
             inlay_hints = {
               parameter_hints_prefix = "  ",
