@@ -52,36 +52,6 @@ local config = {
         -- My slint plugin
         { "slint-ui/vim-slint" },
 
-        -- DAP:
-        { "mfussenegger/nvim-dap" },
-        {
-          "rcarriga/nvim-dap-ui",
-          requires = { "nvim-dap", "rust-tools.nvim" },
-          config = function()
-            local dapui = require "dapui"
-            dapui.setup {}
-
-            local dap = require "dap"
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-              dapui.open()
-            end
-            dap.listeners.before.event_terminated["dapui_config"] = function()
-              dapui.close()
-            end
-            dap.listeners.before.event_exited["dapui_config"] = function()
-              dapui.close()
-            end
-          end,
-        },
-        {
-          "Pocco81/DAPInstall.nvim",
-          config = function()
-            require("dap-install").setup {}
-          end,
-        },
-        {
-          "mfussenegger/nvim-dap-python",
-        },
         -- Rust support
         {
           "simrat39/rust-tools.nvim",
@@ -263,6 +233,7 @@ local config = {
     lspsaga = true,
     gitsigns = true,
     colorizer = true,
+    dap_support = true,
     toggle_term = false,
     comment = true,
     symbols_outline = true,
@@ -319,18 +290,6 @@ local config = {
     map("n", "<leader>CU", ":lua require('crates').upgrade_crate()<cr>", opts)
     map("v", "<leader>CU", ":lua require('crates').upgrade_crates()<cr>", opts)
     map("n", "<leader>CA", ":lua require('crates').upgrade_all_crates()<cr>", opts)
-
-    -- DAP mappings:
-    map("n", "<F5>", ":lua require('dap').continue()<cr>", opts)
-    map("n", "<F10>", ":lua require('dap').step_over()<cr>", opts)
-    map("n", "<F11>", ":lua require('dap').step_into()<cr>", opts)
-    map("n", "<F12>", ":lua require('dap').step_out()<cr>", opts)
-    map("n", "<leader>bp", ":lua require('dap').toggle_breakpoint()<cr>", opts)
-    map("n", "<leader>Bp", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", opts)
-    map("n", "<leader>lp", ":lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Logpoint message: '))<cr>", opts)
-    map("n", "<leader>repl", ":lua require('dap').repl.open()<cr>", opts)
-    map("n", "<leader>rrrr", ":lua require('dap').run_last()<cr>", opts)
-    map("n", "<leader>xxxx", ":lua require('dap').terminate()<cr>", opts)
 
     -- Allow gf to work for non-existing files
     map("n", "gf", ":edit <cfile><cr>", opts)
