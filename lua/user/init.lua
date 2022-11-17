@@ -346,8 +346,6 @@ local config = {
     unmap("n", "<leader>tl")
     unmap("n", "<leader>tn")
     unmap("n", "<leader>tp")
-    unmap("n", "<leader>tt")
-    unmap("n", "<leader>tu")
     unmap("n", "<leader>w")
     -- Packer/Mason keymaps:
     unmap("n", "<leader>pA")
