@@ -371,6 +371,9 @@ local config = {
       { group = "slint_auto", pattern = "*.slint", callback = function() vim.bo.filetype = "slint" end }
     )
 
+    -- Prettify LSP logs:
+    require('vim.lsp.log').set_format_func(vim.inspect);
+
     -- Slint LSP test related helpers:
     _G.slint_dev_attach_to_current_buffer = function()
       if _G.slint_dev_id then
