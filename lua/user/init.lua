@@ -300,7 +300,7 @@ local config = {
     unmap("n", "<leader>sb") -- use <leader>gb
     unmap("n", "<leader>sh") -- use <leader>fh
     unmap("n", "<leader>sm")
-    unmap("n", "<leader>tl")
+    -- unmap("n", "<leader>tl") -- Not installed on bare metal
     unmap("n", "<leader>tn")
     unmap("n", "<leader>tp")
     unmap("n", "<leader>w")
