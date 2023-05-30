@@ -119,6 +119,9 @@ local config = {
 
     { import = "astrocommunity.diagnostics.trouble-nvim" },
     { import = "astrocommunity.git.octo-nvim" },
+    { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
+    -- Use real inlay hints!
+    { "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal", },
     { import = "astrocommunity.motion.leap-nvim" },
     { import = "astrocommunity.motion.nvim-surround" },
 
@@ -126,7 +129,6 @@ local config = {
     { "max397574/better-escape.nvim", enabled = false },
     { "goolord/alpha-nvim", enabled = false },
     { "nvim-telescope/telescope-fzf-native.nvim", enabled = false }, -- fails to build due to missing build tools
-
     -- {
     --   "L3MON4D3/LuaSnip",
     --   config = function(plugin, opts)
@@ -230,6 +232,9 @@ local config = {
 
   polish = function()
     -- vim.opt.runtimepath:append "/home/extra/.local/share/nvim/treesitter" -- treesiter location override!
+  
+    -- override LSP inlay hints
+    vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#777d86", italic = true, })
 
     vim.api.nvim_create_augroup("slint_auto", { clear = true })
     vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
