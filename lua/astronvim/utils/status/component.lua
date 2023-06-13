@@ -296,11 +296,15 @@ function M.lsp(opts)
     lsp_progress = {
       str = "",
       padding = { right = 1 },
-      update = {
+      update = vim.lsp.status and {
+        "LspProgress",
+        "LspRequest",
+        callback = vim.schedule_wrap(function() vim.cmd.redrawstatus() end),
+      } or {
         "User",
         pattern = { "LspProgressUpdate", "LspRequest" },
         callback = vim.schedule_wrap(function() vim.cmd.redrawstatus() end),
-      },
+      }, -- TODO: Remove when dropping Neovim v0.9 support
     },
     lsp_client_names = {
       str = "LSP",
