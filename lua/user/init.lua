@@ -59,6 +59,24 @@ _G.slint_dev_notifier = function(e, r, ctx, c)
 end
 
 local config = {
+  -- Most rust analyzer into its own special place
+  lsp = {
+    config = {
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              buildScripts = { enable = true, },
+              extraEnv = { CARGO_PROFILE_RUST_ANALYZER_INHERITS = 'dev', },
+              extraArgs = { "--profile", "rust-analyzer", },
+            },
+            procMacro = { enable = true, },
+          },
+        },
+      },
+    },
+  },
+
   -- set vim options here (vim.<first_key>.<second_key> = value)
   options = {
     opt = {
