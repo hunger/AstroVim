@@ -92,6 +92,7 @@ local config = {
     },
     g = {
       autoformat_enabled = false, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
+      inlay_hints_enabled = true,
       markdown_fenced_languages = { "ts=typescript" },
     },
   },
@@ -137,11 +138,20 @@ local config = {
 
     { import = "astrocommunity.diagnostics.trouble-nvim" },
     { import = "astrocommunity.git.octo-nvim" },
-    { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
-    -- Use real inlay hints!
-    { "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal", },
     { import = "astrocommunity.motion.leap-nvim" },
     { import = "astrocommunity.motion.nvim-surround" },
+
+    -- use modern inlay hints:
+    {
+      "p00f/clangd_extensions.nvim",
+      optional = true,
+      opts = { extensions = { autoSetHints = false } },
+    },
+    {
+      "simrat39/rust-tools.nvim",
+      optional = true,
+      opts = { tools = { inlay_hints = { auto = false } } },
+    },
 
     -- OVERRIDE AstronVim plugins:
     { "max397574/better-escape.nvim", enabled = false },
